@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Enchanteur</string>
+    <string name="create_account">Create an account</string>
+    <string name="logo_content_description">Logo</string>
+
+    <string name="hint_username">Create Username</string>
+    <string name="hint_password">Create Password</string>
+
+    <string name="sign_up_button">Sign Up</string>
+
+    <string name="already_have_an_account">Already have an account? </string>
+    <string name="login_here">Login here</string>
+
+    <string name="sign_in_account">Sign in your account</string>
+
+    <string name="hint_user">Username</string>
+    <string name="hint_pass">Password</string>
+
+    <string name="login_button">Login</string>
+
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+
+    <string name="welcome">Welcome to Library System App</string>
+
+    <string name="recommended_button">Recommended</string>
+    <string name="all_button">All</string>
+    <string name="latest_button">Latest</string>
+
+    <string name="search_description">search button</string>
+    <string name="welcome_user">Welcome @%s</string>
+    <string name="navigate">NAVIGATE TO:</string>
+    <string name="add_book_button">ADD BOOK</string>
+    <string name="update_book_button">UPDATE</string>
+    <string name="delete_book_button">DELETE</string>
+    <string name="issue_book_button">ISSUE BOOK</string>
+    <string name="fill_the_following_information">Fill the following information</string>
+
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="category">Category</string>
+
+
+</resources>
