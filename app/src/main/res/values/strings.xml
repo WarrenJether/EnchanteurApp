@@ -28,7 +28,7 @@
     <string name="latest_button">Latest</string>
 
     <string name="search_description">search button</string>
-    <string name="welcome_user">Welcome @%s</string>
+    <string name="welcome_user">Welcome %s!</string>
     <string name="navigate">NAVIGATE TO:</string>
     <string name="add_book_button">ADD BOOK</string>
     <string name="update_book_button">UPDATE</string>

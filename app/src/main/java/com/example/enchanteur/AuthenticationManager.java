@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AuthenticationManager {
-    private final List<Student> students;
+    private static AuthenticationManager instance;
+    private List<Student> students;
 
-    public AuthenticationManager() {
+    private AuthenticationManager() {
         students = new ArrayList<>();
+    }
+
+    public static AuthenticationManager getInstance() {
+        if (instance == null) {
+            instance = new AuthenticationManager();
+        }
+        return instance;
     }
 
     public void addUser(String username, String password) {
@@ -27,5 +35,9 @@ public class AuthenticationManager {
             }
         }
         return false; // User not found or verification failed
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 }

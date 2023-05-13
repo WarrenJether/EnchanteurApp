@@ -7,7 +7,7 @@
     tools:context=".AddBookActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvFillInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="117dp"
@@ -15,6 +15,7 @@
         android:layout_marginEnd="116dp"
         android:layout_marginBottom="669dp"
         android:text="@string/fill_the_following_information"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,56 +23,64 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="251dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
+        android:id="@+id/edtTextTitle"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
         android:layout_marginTop="47dp"
-        android:layout_marginEnd="169dp"
         android:layout_marginBottom="31dp"
         android:ems="10"
         android:hint="@string/title"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintBottom_toTopOf="@+id/edtTextAuthor"
+        app:layout_constraintEnd_toEndOf="@+id/tvFillInformation"
+        app:layout_constraintStart_toStartOf="@+id/tvFillInformation"
+        app:layout_constraintTop_toBottomOf="@+id/tvFillInformation"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/edtTextAuthor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginBottom="31dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/author"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTextCategory"
+        app:layout_constraintEnd_toEndOf="@+id/edtTextTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTextTitle"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextTitle" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/edtTextCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/category"
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
-        tools:layout_editor_absoluteY="270dp" />
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        app:layout_constraintEnd_toEndOf="@+id/edtTextAuthor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTextAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextAuthor" />
 
     <Button
         android:id="@+id/btnAddBooks"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="59dp"
-        android:layout_marginEnd="161dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="309dp"
         android:text="@string/add_book_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintEnd_toEndOf="@+id/edtTextCategory"
+        app:layout_constraintStart_toStartOf="@+id/edtTextCategory"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextCategory"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

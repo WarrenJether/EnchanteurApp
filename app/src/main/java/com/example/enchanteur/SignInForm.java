@@ -2,7 +2,6 @@ package com.example.enchanteur;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ public class SignInForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_form);
 
-        authManager = new AuthenticationManager();
+        authManager = AuthenticationManager.getInstance();
 
         etxtUsername = findViewById(R.id.edtLance);
         etxtPassword = findViewById(R.id.edtBallesteros);
@@ -43,24 +42,25 @@ public class SignInForm extends AppCompatActivity {
             }
         });
 
-        signUpText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignInForm.this, SignUpForm.class);
-            }
+        signUpText.setOnClickListener(v -> {
+            Intent intent = new Intent(SignInForm.this, SignUpForm.class);
+            startActivity(intent);
         });
     }
     private void verifyStudent(String username, String password) {
         if (authManager.verifyUser(username, password)) {
             Toast.makeText(this, "User verified successfully.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignInForm.this, Dashboard.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
             clearFields();
+            loginSuccessful(username);
         } else {
            Toast.makeText(this, "Invalid username or password.", Toast.LENGTH_SHORT).show();
             clearFields();
         }
+    }
+    private void loginSuccessful(String username) {
+        Intent intent = new Intent(this, Dashboard.class);
+        intent.putExtra("username", username);
+        startActivity(intent);
     }
 
     private void clearFields() {

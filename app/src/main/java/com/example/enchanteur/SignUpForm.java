@@ -23,7 +23,7 @@ public class SignUpForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_form);
 
-        authManager = new AuthenticationManager();
+        authManager = AuthenticationManager.getInstance();
 
         edtCreateUsername = findViewById(R.id.etxtUsername);
         edtCreatePassword = findViewById(R.id.etxtPassword);

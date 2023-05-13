@@ -14,7 +14,7 @@ class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private List<Book> bookList;
 
     public BookAdapter(List<Book> bookList) {
-
+        this.bookList = bookList;
     }
 
     @NonNull
@@ -36,7 +36,7 @@ class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     }
     // Constructor, methods to update the bookList and bind data to the ViewHolder
 
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    static class BookViewHolder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
         private TextView authorTextView;
         private TextView categoryTextView;
