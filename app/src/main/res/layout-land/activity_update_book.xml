@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateBookActivity">
+
+    <TextView
+        android:id="@+id/tvFillInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/fill_the_following_information"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtTextUpdateBookNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/book_number"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        app:layout_constraintEnd_toEndOf="@+id/tvFillInformation"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFillInformation" />
+
+    <EditText
+        android:id="@+id/edtTextUpdateTitle"
+        android:layout_width="300dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="31dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/title"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/edtTextUpdateAuthor"
+        app:layout_constraintEnd_toEndOf="@+id/tvFillInformation"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/tvFillInformation"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextUpdateBookNumber" />
+
+    <EditText
+        android:id="@+id/edtTextUpdateAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="31dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/author"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTextUpdateCategory"
+        app:layout_constraintEnd_toEndOf="@+id/edtTextUpdateTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTextUpdateTitle"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextUpdateTitle" />
+
+    <EditText
+        android:id="@+id/edtTextUpdateCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/category"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        app:layout_constraintEnd_toEndOf="@+id/edtTextUpdateAuthor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTextUpdateAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/edtTextUpdateAuthor" />
+
+    <Button
+        android:id="@+id/btnUpdateBooks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_book_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintStart_toEndOf="@+id/edtTextUpdateCategory"
+        app:layout_constraintTop_toTopOf="@+id/edtTextUpdateAuthor"
+        app:layout_constraintVertical_bias="0.366" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

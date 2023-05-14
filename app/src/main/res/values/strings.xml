@@ -36,9 +36,14 @@
     <string name="issue_book_button">ISSUE BOOK</string>
     <string name="fill_the_following_information">Fill the following information</string>
 
+    <string name="book_number">Book number</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
     <string name="category">Category</string>
 
+    <string name="confirm">Confirm the books to be issue below:</string>
+    <string name="confirm_button">Confirm</string>
+    <string name="view_borrow_books_button">VIEW BORROWED BOOKS</string>
+    <string name="return_borrow_books_button">RETURN BOOKS</string>
 
 </resources>
