@@ -3,8 +3,10 @@
     <string name="create_account">Create an account</string>
     <string name="logo_content_description">Logo</string>
 
-    <string name="hint_username">Create Username</string>
-    <string name="hint_password">Create Password</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="hint_username">Enter Username</string>
+    <string name="hint_password">Enter Password</string>
 
     <string name="sign_up_button">Sign Up</string>
 
@@ -45,5 +47,6 @@
     <string name="confirm_button">Confirm</string>
     <string name="view_borrow_books_button">VIEW BORROWED BOOKS</string>
     <string name="return_borrow_books_button">RETURN BOOKS</string>
+
 
 </resources>

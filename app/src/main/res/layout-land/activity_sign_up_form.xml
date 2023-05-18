@@ -7,6 +7,7 @@
     tools:context=".SignUpForm">
 
     <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -20,17 +21,20 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
         android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="9dp"
         app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_account"
-        app:layout_constraintVertical_bias="0.148"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_account">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,62 +42,82 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <EditText
-                android:id="@+id/etxtFullName"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/enter_full_name"
-                android:inputType="text"
-                android:minHeight="48dp"
-                tools:ignore="TextContrastCheck,VisualLintTextFieldSize"
-                tools:layout_editor_absoluteX="77dp"
-                tools:layout_editor_absoluteY="549dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etxtEmail"
+                <EditText
+                    android:id="@+id/etxtFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="50"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/enter_full_name"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintTextFieldSize"
+                    tools:layout_editor_absoluteX="77dp"
+                    tools:layout_editor_absoluteY="549dp" />
+
+                <EditText
+                    android:id="@+id/etxtEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="50"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/enter_email"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    tools:ignore="VisualLintTextFieldSize,TextContrastCheck"
+                    tools:layout_editor_absoluteX="74dp"
+                    tools:layout_editor_absoluteY="491dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/enter_email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                tools:ignore="VisualLintTextFieldSize,TextContrastCheck"
-                tools:layout_editor_absoluteX="74dp"
-                tools:layout_editor_absoluteY="491dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etxtUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/hint_username"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:layout_marginTop="20dp"
-                tools:ignore="VisualLintTextFieldSize,TextContrastCheck"
-                tools:layout_editor_absoluteX="87dp"
-                tools:layout_editor_absoluteY="608dp" />
+                <EditText
+                    android:id="@+id/etxtUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="50"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/hint_username"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintTextFieldSize"
+                    tools:layout_editor_absoluteX="87dp"
+                    tools:layout_editor_absoluteY="608dp" />
 
 
-            <EditText
-                android:id="@+id/etxtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                tools:ignore="VisualLintTextFieldSize,TextContrastCheck"
-                tools:layout_editor_absoluteX="82dp"
-                tools:layout_editor_absoluteY="663dp" />
+                <EditText
+                    android:id="@+id/etxtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="50"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:minHeight="48dp"
+                    tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintTextFieldSize"
+                    tools:layout_editor_absoluteX="82dp"
+                    tools:layout_editor_absoluteY="663dp" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnSignUp"
@@ -102,10 +126,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:onClick="setBtnSignUp"
                 android:text="@string/sign_up_button"
-                tools:ignore="UsingOnClickInXml,VisualLintButtonSize"
-                android:layout_marginBottom="16dp"/>
+                tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -124,13 +148,13 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.34" />
+                    app:layout_constraintVertical_bias="0.147" />
 
                 <TextView
                     android:id="@+id/txtSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="236dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:minHeight="48dp"
@@ -174,28 +198,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
 
-    <ImageView
-        android:id="@+id/imglogo"
-        android:layout_width="174dp"
-        android:layout_height="181dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/logo_content_description"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/logo_screen_2__removebg_preview"
-        tools:ignore="ImageContrastCheck" />
-
     <TextView
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginEnd="261dp"
         android:text="@string/create_account"
-        android:textSize="26sp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/imglogo"
-        app:layout_constraintStart_toStartOf="@+id/imglogo"
-        app:layout_constraintTop_toBottomOf="@+id/imglogo" />
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

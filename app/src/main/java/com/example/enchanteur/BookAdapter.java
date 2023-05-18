@@ -58,6 +58,7 @@ class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
             categoryTextView = itemView.findViewById(R.id.tvCategory);
             checkboxBook = itemView.findViewById(R.id.checkboxBook);
 
+
             this.onBookClickListener = onBookClickListener;
 
             itemView.setOnClickListener(this);
