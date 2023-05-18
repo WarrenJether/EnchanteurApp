@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class SignUpForm extends AppCompatActivity {
 
     TextView loginHere;
-    EditText edtCreateUsername, edtCreatePassword;
+    EditText edtCreateUsername, edtCreatePassword, edtCreateFullName, edtCreateEmail;
     Button btnSignUp;
     private AuthenticationManager authManager;
 
@@ -27,18 +27,26 @@ public class SignUpForm extends AppCompatActivity {
 
         edtCreateUsername = findViewById(R.id.etxtUsername);
         edtCreatePassword = findViewById(R.id.etxtPassword);
+        edtCreateFullName = findViewById(R.id.etxtFullName);
+        edtCreateEmail = findViewById(R.id.etxtEmail);
 
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(v -> {
             String createUsername = edtCreateUsername.getText().toString().trim();
             String createPassword = edtCreatePassword.getText().toString().trim();
+            String createFullName = edtCreateFullName.getText().toString().trim();
+            String createEmail = edtCreateEmail.getText().toString().trim();
 
             if (createUsername.isEmpty()) {
                 Toast.makeText(SignUpForm.this, "Enter Username.", Toast.LENGTH_SHORT).show();
             } else if (createPassword.isEmpty()) {
                 Toast.makeText(SignUpForm.this, "Enter Password", Toast.LENGTH_SHORT).show();
+            } else if (createFullName.isEmpty()) {
+                    Toast.makeText(SignUpForm.this, "Enter Full Name", Toast.LENGTH_SHORT).show();
+            } else if (createEmail.isEmpty()) {
+                    Toast.makeText(SignUpForm.this, "Enter Email", Toast.LENGTH_SHORT).show();
             } else {
-                addUser(createUsername, createPassword);
+                addUser(createFullName, createEmail, createUsername, createPassword);
             }
         });
 
@@ -54,9 +62,9 @@ public class SignUpForm extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void addUser(String username, String password) {
+    private void addUser(String fullName, String email, String username, String password) {
         try {
-            authManager.addUser(username, password);
+            authManager.addUser(fullName, email, username, password);
             Toast.makeText(this, "User added successfully.", Toast.LENGTH_SHORT).show();
             clearFields();
             proceedToLoginForm();
@@ -66,6 +74,8 @@ public class SignUpForm extends AppCompatActivity {
         }
     }
     private void clearFields() {
+        edtCreateFullName.setText("");
+        edtCreateEmail.setText("");
         edtCreateUsername.setText("");
         edtCreatePassword.setText("");
     }

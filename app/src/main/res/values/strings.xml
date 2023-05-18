@@ -48,5 +48,11 @@
     <string name="view_borrow_books_button">VIEW BORROWED BOOKS</string>
     <string name="return_borrow_books_button">RETURN BOOKS</string>
 
+    <string name="fill_borrower_info">Please fill borrower information:</string>
+    <string name="student_name">Enter Name</string>
+    <string name="student_no">Enter Student Number</string>
+    <string name="student_contact_no">Enter Contact Number</string>
+
+    <string name="borrower">BORROWER LIST:</string>
 
 </resources>

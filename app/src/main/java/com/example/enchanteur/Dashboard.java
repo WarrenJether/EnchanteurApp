@@ -1,5 +1,6 @@
 package com.example.enchanteur;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +24,7 @@ import java.util.List;
 public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookClickListener {
 
     TextView tvUser;
-    Button btnAdd, btnUpdate, btnDelete, btnIssue, btnViewBorrowedBooks, btnReturnBooks;
+    Button btnAdd, btnUpdate, btnDelete, btnIssue, btnViewBorrowedBooks, btnReturnBooks, borrower, view;
     RecyclerView recyclerView;
     private List<Book> bookList;
     private BookAdapter bookAdapter;
@@ -36,7 +37,11 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
     private String returnDate; // Variable to store the return date
     private int borrowCount; // Variable to store the count of items borrowed
     private static final String PREF_KEY_BOOKS_EXIST = "booksExist";
+    private static final int ADD_BORROWER_REQUEST = 2; // Define the request code for the add borrower activity
+    private List<BorrowerStudent> borrowerStudentList;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,8 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
         btnIssue = findViewById(R.id.btnIssue);
         btnViewBorrowedBooks = findViewById(R.id.btnViewBorrowedBooks);
         btnReturnBooks = findViewById(R.id.btnReturn);
+        borrower = findViewById(R.id.borrower);
+        view = findViewById(R.id.view);
 
         String username = getIntent().getStringExtra("username");
 
@@ -59,24 +66,7 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
         bookDataSource = BookDataSource.getInstance();
         bookList = bookDataSource.getBookList();
         bookAdapter = new BookAdapter(bookList, this);
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean booksExist = preferences.getBoolean(PREF_KEY_BOOKS_EXIST, false);
-
-        if (!booksExist) {
-            // Add the pre-existing data only if it doesn't already exist
-            bookList.add(new Book(1, "Title 1", "Author 1", "Category 1"));
-            bookList.add(new Book(2, "Title 2", "Author 2", "Category 2"));
-            bookList.add(new Book(3, "Title 3", "Author 3", "Category 3"));
-
-            // Save the flag indicating that the books exist
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean(PREF_KEY_BOOKS_EXIST, true);
-            editor.apply();
-
-            // Notify the adapter about the changes in the bookList
-            bookAdapter.notifyDataSetChanged();
-        }
+        borrowerStudentList = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(bookAdapter);
@@ -148,6 +138,35 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
                 }
             }
         });
+
+        borrower.setOnClickListener(v -> {
+            if (!selectedPositions.isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Issue Books");
+                builder.setMessage("Do you want to issue the selected books?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Dashboard.this, Borrower.class);
+                        startActivityForResult(intent, ADD_BORROWER_REQUEST);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.create().show();
+            } else {
+                Toast.makeText(this, "Please select a book to issue", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, ViewBorrower.class);
+                intent.putParcelableArrayListExtra("borrowerStudentList", (ArrayList<BorrowerStudent>) borrowerStudentList);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void launchAddBookActivity() {
@@ -161,11 +180,6 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
         startActivity(intent);
     }
 
-//    private void launchDeleteBookActivity() {
-//        Intent intent = new Intent(Dashboard.this, DeleteBookActivity.class);
-//        startActivity(intent);
-//    }
-
     private void launchIssueBookActivity(List<Integer> selectedPositions) {
         Intent intent = new Intent(Dashboard.this, IssueBookActivity.class);
         intent.putExtra("positions", new ArrayList<>(selectedPositions));
@@ -174,7 +188,7 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ISSUE_BOOK_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
@@ -182,7 +196,20 @@ public class Dashboard extends AppCompatActivity implements BookAdapter.OnBookCl
             returnDate = data.getStringExtra("returnDate");
             borrowCount = data.getIntExtra("borrowCount", 0);
         }
+
+        if (requestCode == ADD_BORROWER_REQUEST && resultCode == RESULT_OK) {
+            if (data != null && data.hasExtra("borrowerStudentList")) {
+                ArrayList<BorrowerStudent> retrievedBorrowerStudentList = data.getParcelableArrayListExtra("borrowerStudentList");
+                if (retrievedBorrowerStudentList != null) {
+                    borrowerStudentList.clear();
+                    borrowerStudentList.addAll(retrievedBorrowerStudentList);
+                    // Do something with the retrieved borrowerStudentList
+                    // Update the UI or perform any other necessary operations
+                }
+            }
+        }
     }
+
 
     private void viewBorrowedBooks() {
         // Check if borrow information is available
