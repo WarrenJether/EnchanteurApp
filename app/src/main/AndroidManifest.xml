@@ -16,23 +16,14 @@
             android:name=".ViewBorrower"
             android:exported="false" />
         <activity
-            android:name=".Borrower"
-            android:exported="false" />
-        <activity
-            android:name=".ManageBook"
-            android:exported="false" />
-        <activity
             android:name=".IssueBookActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DeleteBookActivity"
             android:exported="false" />
         <activity
             android:name=".UpdateBookActivity"
             android:exported="false" />
         <activity
             android:name=".AddBookActivity"
-            android:exported="false" />
+            android:parentActivityName=".Dashboard" />
         <activity
             android:name=".Dashboard"
             android:exported="false" />

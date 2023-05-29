@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Borrower">
+    tools:context=".IssueBookActivity"
+    tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/tvFillInformation"
         android:layout_width="304dp"
         android:layout_height="46dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="79dp"
         android:layout_marginBottom="20dp"
         android:text="@string/fill_borrower_info"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/edtStudentNo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TextSizeCheck" />
@@ -27,7 +28,7 @@
         android:id="@+id/edtStudentName"
         android:layout_width="300dp"
         android:layout_height="54dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/student_name"
@@ -37,11 +38,13 @@
         app:layout_constraintStart_toStartOf="@+id/tvFillInformation"
         app:layout_constraintTop_toBottomOf="@+id/edtStudentNo" />
 
-    ♦<EditText
+    ♦
+
+    <EditText
         android:id="@+id/edtContactNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/student_contact_no"
@@ -54,21 +57,23 @@
 
     <Button
         android:id="@+id/issueBookButton"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/issue_book_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edtContactNo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtContactNo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toEndOf="@+id/edtStudentName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <EditText
         android:id="@+id/edtStudentNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/student_no"
@@ -76,7 +81,7 @@
         android:minHeight="48dp"
         android:textColorHint="#8D6E63"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFillInformation" />
 

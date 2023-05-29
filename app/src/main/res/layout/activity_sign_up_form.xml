@@ -176,15 +176,15 @@
 
     <ImageView
         android:id="@+id/imglogo"
-        android:layout_width="174dp"
-        android:layout_height="181dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="8dp"
         android:contentDescription="@string/logo_content_description"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/logo_screen_2__removebg_preview"
+        app:srcCompat="@drawable/logo_screen"
         tools:ignore="ImageContrastCheck" />
 
     <TextView

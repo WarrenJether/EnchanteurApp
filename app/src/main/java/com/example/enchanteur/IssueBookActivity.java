@@ -1,90 +1,106 @@
 package com.example.enchanteur;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class IssueBookActivity extends AppCompatActivity {
-
-    private RecyclerView selectedItemsRecyclerView;
-    private SelectedBookAdapter selectedBookAdapter;
-    private List<Book> selectedBooks;
-    private Button confirmButton;
-    private String borrowData; // Variable to store the borrow date
-    private String returnDate; // Variable to store the return date
-    private int borrowCount; // Variable to store the count of items borrowed
-    private List<Integer> selectedPositions;
+    private EditText edtStudentName, edtStudentNo, edtContactNo;
+    private Button issueBookBtn;
+    private AuthenticationManager authManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issue_book);
 
-        confirmButton = findViewById(R.id.btnConfirm);
-        selectedItemsRecyclerView = findViewById(R.id.selectedItemsRecyclerView);
+        edtStudentName = findViewById(R.id.edtStudentName);
+        edtStudentNo = findViewById(R.id.edtStudentNo);
+        edtContactNo = findViewById(R.id.edtContactNo);
+        issueBookBtn = findViewById(R.id.issueBookButton);
 
-        // Retrieve the list of selected books from the intent
-        List<Integer> selectedPositions = getIntent().getIntegerArrayListExtra("positions");
-        List<Book> bookList = getIntent().<Book>getParcelableArrayListExtra("bookList");
+        authManager = AuthenticationManager.getInstance();
 
-        selectedBooks = new ArrayList<>();
-        assert selectedPositions != null;
-        for (int position : selectedPositions) {
-            assert bookList != null;
-            selectedBooks.add(bookList.get(position));
-        }
-
-        // Set up the RecyclerView with the SelectedBookAdapter
-        selectedBookAdapter = new SelectedBookAdapter(selectedBooks);
-        selectedItemsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        selectedItemsRecyclerView.setAdapter(selectedBookAdapter);
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        issueBookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmBorrowAction();
+                String studentName = edtStudentName.getText().toString().trim();
+                String studentNo = edtStudentNo.getText().toString().trim();
+                String contactNo = edtContactNo.getText().toString().trim();
+
+                if (!studentName.isEmpty() && !studentNo.isEmpty() && !contactNo.isEmpty()) {
+                    addBorrower(studentName, studentNo, contactNo);
+                } else {
+                    Toast.makeText(IssueBookActivity.this, "Please fill up form.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
+    private void addBorrower(String studentName, String studentNo, String contactNo) {
+        try {
+            authManager.addBorrower(studentName, studentNo, contactNo);
+            authManager.incrementBorrowedCount(studentName); // Increment borrowed count
+            Toast.makeText(this, "User added successfully.", Toast.LENGTH_SHORT).show();
+            clearFields();
+            proceedToDashboard();
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            clearFields();
+        }
+    }
 
-    private void confirmBorrowAction() {
-        // Calculate the return date using a separate method
-        String returnDate = calculateReturnDate();
-
-        borrowData = getCurrentDate(); // Get the current date as the borrow date
-        this.returnDate = returnDate; // Set the calculated return date
-        borrowCount = selectedBooks.size(); // Set the count of items borrowed based on the selectedBooks list
-
+    private void proceedToDashboard() {
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("borrowData", borrowData);
-        resultIntent.putExtra("returnDate", returnDate);
-        resultIntent.putExtra("borrowCount", borrowCount);
-        setResult(Activity.RESULT_OK, resultIntent);
+        ArrayList<BorrowerStudent> borrowerStudentList = new ArrayList<>(authManager.getBorrowerStudents());
+        setBorrowedAndReturnDates(borrowerStudentList); // Set borrowed and return dates
+        resultIntent.putParcelableArrayListExtra("borrowerStudentList", borrowerStudentList);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 
-    private String getCurrentDate() {
+    private void setBorrowedAndReturnDates(List<BorrowerStudent> borrowerStudentList) {
+        Date currentDate = new Date();
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return dateFormat.format(calendar.getTime());
+        calendar.setTime(currentDate);
+        for (BorrowerStudent borrowerStudent : borrowerStudentList) {
+            borrowerStudent.setBorrowedDate(calendar.getTime());
+            calendar.add(Calendar.WEEK_OF_YEAR, 2); // Add two weeks to the current date
+            borrowerStudent.setReturnDate(calendar.getTime());
+        }
     }
 
-    private String calculateReturnDate() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.WEEK_OF_YEAR, 2);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return dateFormat.format(calendar.getTime());
+//    private void addBorrower(String studentName, String studentNo, String contactNo) {
+//        try {
+//            authManager.addBorrower(studentName, studentNo, contactNo);
+//            Toast.makeText(this, "User added successfully.", Toast.LENGTH_SHORT).show();
+//            clearFields();
+//            proceedToDashboard();
+//        } catch (IllegalArgumentException e) {
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            clearFields();
+//        }
+//    }
+//
+//    private void proceedToDashboard() {
+//        Intent resultIntent = new Intent();
+//        resultIntent.putParcelableArrayListExtra("borrowerStudentList", new ArrayList<>(authManager.getBorrowerStudents()));
+//        setResult(RESULT_OK, resultIntent);
+//        finish();
+//    }
+
+    private void clearFields() {
+        edtStudentName.setText("");
+        edtStudentNo.setText("");
+        edtContactNo.setText("");
     }
 }

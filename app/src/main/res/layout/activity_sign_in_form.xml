@@ -160,6 +160,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:srcCompat="@drawable/logo_screen_2__removebg_preview" />
+        app:srcCompat="@drawable/logo_screen" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

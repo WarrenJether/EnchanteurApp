@@ -38,16 +38,37 @@ public class AuthenticationManager {
         }
         return false; // User not found or verification failed
     }
-
     public void addBorrower(String studentName, String studentNo, String contactNo) {
-        for (BorrowerStudent borrower: borrowerStudents) {
+        for (BorrowerStudent borrower : borrowerStudents) {
             if (borrower.getName().equals(studentName)) {
-                throw new IllegalArgumentException("Username and password have already been used.");
+                throw new IllegalArgumentException("Borrower with the same name already exists.");
             }
         }
+
         BorrowerStudent borrower = new BorrowerStudent(studentName, studentNo, contactNo);
+        borrower.setBorrowedCount(0); // Initialize borrowed count to 0
         borrowerStudents.add(borrower);
     }
+
+    public void incrementBorrowedCount(String studentName) {
+        for (BorrowerStudent borrower : borrowerStudents) {
+            if (borrower.getName().equals(studentName)) {
+                int currentBorrowedCount = borrower.getBorrowedCount();
+                borrower.setBorrowedCount(currentBorrowedCount + 1);
+                return;
+            }
+        }
+    }
+
+//    public void addBorrower(String studentName, String studentNo, String contactNo) {
+//        for (BorrowerStudent borrower: borrowerStudents) {
+//            if (borrower.getName().equals(studentName)) {
+//                throw new IllegalArgumentException("Username and password have already been used.");
+//            }
+//        }
+//        BorrowerStudent borrower = new BorrowerStudent(studentName, studentNo, contactNo);
+//        borrowerStudents.add(borrower);
+//    }
 
     public List<Student> getStudents() {
         return students;

@@ -12,6 +12,7 @@ import java.util.List;
 public class BorrowerAdapter extends ArrayAdapter<BorrowerStudent> {
 
     private LayoutInflater inflater;
+    private List<BorrowerStudent> selectedItems;
 
     public BorrowerAdapter(Context context, List<BorrowerStudent> borrowerList) {
         super(context, 0, borrowerList);
@@ -33,13 +34,17 @@ public class BorrowerAdapter extends ArrayAdapter<BorrowerStudent> {
 
         // Set the student number
         TextView numberTextView = convertView.findViewById(R.id.tvStudentNo);
-        numberTextView.setText(borrower.getStudentNumber());
+        numberTextView.setText(borrower.getStudentNo());
 
         // Set the contact number
         TextView contactTextView = convertView.findViewById(R.id.tvContactNo);
-        contactTextView.setText(borrower.getContactNumber());
+        contactTextView.setText(borrower.getContactNo());
 
         return convertView;
     }
+    public List<BorrowerStudent> getSelectedItems() {
+        return selectedItems;
+    }
 }
+
 

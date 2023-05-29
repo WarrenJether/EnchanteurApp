@@ -31,11 +31,12 @@
 
     <string name="search_description">search button</string>
     <string name="welcome_user">Welcome %s!</string>
-    <string name="navigate">NAVIGATE TO:</string>
+    <string name="navigate">MANAGE BOOK:</string>
     <string name="add_book_button">ADD BOOK</string>
-    <string name="update_book_button">UPDATE</string>
-    <string name="delete_book_button">DELETE</string>
+    <string name="update_book_button">UPDATE BOOK</string>
+    <string name="delete_book_button">DELETE BOOK</string>
     <string name="issue_book_button">ISSUE BOOK</string>
+    <string name="logout">Logout</string>
     <string name="fill_the_following_information">Fill the following information</string>
 
     <string name="book_number">Book number</string>
@@ -45,7 +46,7 @@
 
     <string name="confirm">Confirm the books to be issue below:</string>
     <string name="confirm_button">Confirm</string>
-    <string name="view_borrow_books_button">VIEW BORROWED BOOKS</string>
+    <string name="view_borrow_books_button">VIEW BORROWERS</string>
     <string name="return_borrow_books_button">RETURN BOOKS</string>
 
     <string name="fill_borrower_info">Please fill borrower information:</string>
@@ -54,5 +55,6 @@
     <string name="student_contact_no">Enter Contact Number</string>
 
     <string name="borrower">BORROWER LIST:</string>
+    <string name="add_button">Add Button</string>
 
 </resources>

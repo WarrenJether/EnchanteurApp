@@ -3,21 +3,31 @@ package com.example.enchanteur;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.Date;
+
 public class BorrowerStudent implements Parcelable {
     private String name;
-    private String studentNumber;
-    private String contactNumber;
+    private String studentNo;
+    private String contactNo;
+    private Date borrowedDate;
+    private Date returnDate;
+    private int borrowedCount;
 
-    public BorrowerStudent(String name, String studentNumber, String contactNumber) {
+    public BorrowerStudent(String name, String studentNo, String contactNo) {
         this.name = name;
-        this.studentNumber = studentNumber;
-        this.contactNumber = contactNumber;
+        this.studentNo = studentNo;
+        this.contactNo = contactNo;
     }
 
     protected BorrowerStudent(Parcel in) {
         name = in.readString();
-        studentNumber = in.readString();
-        contactNumber = in.readString();
+        studentNo = in.readString();
+        contactNo = in.readString();
+        borrowedDate = new Date(in.readLong());
+        returnDate = new Date(in.readLong());
     }
 
     public static final Creator<BorrowerStudent> CREATOR = new Creator<BorrowerStudent>() {
@@ -36,12 +46,36 @@ public class BorrowerStudent implements Parcelable {
         return name;
     }
 
-    public String getStudentNumber() {
-        return studentNumber;
+    public String getStudentNo() {
+        return studentNo;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public Date getBorrowedDate() {
+        return borrowedDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setBorrowedDate(Date borrowedDate) {
+        this.borrowedDate = borrowedDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public int getBorrowedCount() {
+        return borrowedCount;
+    }
+
+    public void setBorrowedCount(int borrowedCount) {
+        this.borrowedCount = borrowedCount;
     }
 
     @Override
@@ -52,7 +86,18 @@ public class BorrowerStudent implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(studentNumber);
-        dest.writeString(contactNumber);
+        dest.writeString(studentNo);
+        dest.writeString(contactNo);
+        dest.writeLong(borrowedDate != null ? borrowedDate.getTime() : -1);
+        dest.writeLong(returnDate != null ? returnDate.getTime() : -1);
     }
+
+    public void updateBorrowedCount(int count) {
+        borrowedCount = count;
+    }
+
+    public void incrementBorrowedCount() {
+        borrowedCount++;
+    }
+
 }
